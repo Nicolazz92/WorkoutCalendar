@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "contests")
 @ToString(callSuper = true, exclude = {"image", "workouts", "performance"})
 @Entity
 public class UserProfile extends BaseEntityNamed {
