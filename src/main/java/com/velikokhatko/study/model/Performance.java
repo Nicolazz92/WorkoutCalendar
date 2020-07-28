@@ -2,11 +2,15 @@ package com.velikokhatko.study.model;
 
 import com.velikokhatko.study.model.base.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import java.time.LocalTime;
 
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
+@ToString(callSuper = true, exclude = "user")
 @Entity
 public class Performance extends BaseEntity {
     private UserProfile user;

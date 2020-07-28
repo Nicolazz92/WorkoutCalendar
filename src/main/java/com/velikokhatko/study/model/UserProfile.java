@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(exclude = {"workouts"}, callSuper = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(callSuper = true, exclude = {"image", "workouts", "performance"})
 @Entity
 public class UserProfile extends BaseEntityNamed {

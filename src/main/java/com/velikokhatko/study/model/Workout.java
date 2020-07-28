@@ -5,6 +5,7 @@ import com.velikokhatko.study.model.enums.Intensive;
 import com.velikokhatko.study.model.enums.WorkoutType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
+@ToString(callSuper = true, exclude = "user")
 @Entity
 public class Workout extends BaseEntityNamed {
     private UserProfile user;
