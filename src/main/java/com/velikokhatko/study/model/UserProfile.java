@@ -29,6 +29,9 @@ public class UserProfile extends BaseEntityNamed {
     @JoinColumn(name = "id")
     private Performance performance;
 
+    @ManyToMany(mappedBy = "members")
+    private Set<Contest> contests = new HashSet<>();
+
     //TODO Добавить сущность Contest
 
     public void addWorkout(Workout workout) {
