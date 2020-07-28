@@ -32,8 +32,6 @@ public class UserProfile extends BaseEntityNamed {
     @ManyToMany(mappedBy = "members")
     private Set<Contest> contests = new HashSet<>();
 
-    //TODO Добавить сущность Contest
-
     public void addWorkout(Workout workout) {
         workout.setUserProfile(this);
         workouts.add(workout);
@@ -50,4 +48,6 @@ public class UserProfile extends BaseEntityNamed {
         performance.setUserProfile(this);
         this.performance = performance;
     }
+
+    //TODO добавить методы для ресолва bidirectional связи
 }

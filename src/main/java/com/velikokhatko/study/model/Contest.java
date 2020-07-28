@@ -31,4 +31,6 @@ public class Contest extends BaseEntityNamed {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     private UserProfile winner;
+
+    //TODO добавить методы для ресолва bidirectional связи
 }
