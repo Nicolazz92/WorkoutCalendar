@@ -9,8 +9,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = "userProfile")
@@ -38,5 +38,5 @@ public class Workout extends BaseEntityNamed {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id")
-    private List<Workout> workouts = new ArrayList<>();
+    private Set<Workout> workouts = new HashSet<>();
 }
