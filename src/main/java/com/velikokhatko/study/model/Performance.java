@@ -6,14 +6,17 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.time.LocalTime;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
-@ToString(callSuper = true, exclude = "user")
+@EqualsAndHashCode(callSuper = false, exclude = "userProfile")
+@ToString(callSuper = true, exclude = "userProfile")
 @Entity
 public class Performance extends BaseEntity {
-    private UserProfile user;
+
+    @OneToOne(mappedBy = "performance")
+    private UserProfile userProfile;
     private LocalTime run100m;
     private LocalTime run500m;
     private LocalTime run1000m;

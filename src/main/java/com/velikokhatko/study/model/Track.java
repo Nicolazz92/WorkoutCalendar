@@ -6,11 +6,14 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true, exclude = "image")
 @Entity
 public class Track extends BaseEntityNamed {
+
+    @Lob
     private Byte[] image;
 }
