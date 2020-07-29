@@ -32,5 +32,17 @@ public class Contest extends BaseEntityNamed {
     @JoinColumn(name = "id")
     private UserProfile winner;
 
-    //TODO добавить методы для ресолва bidirectional связи
+    public void addMember(UserProfile member) {
+        boolean added = members.add(member);
+        if (added) {
+            member.addContest(this);
+        }
+    }
+
+    public void removeMember(UserProfile member) {
+        boolean removed = members.remove(member);
+        if (removed) {
+            member.removeContest(this);
+        }
+    }
 }

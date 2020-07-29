@@ -33,8 +33,10 @@ public class UserProfile extends BaseEntityNamed {
     private Set<Contest> contests = new HashSet<>();
 
     public void addWorkout(Workout workout) {
-        workout.setUserProfile(this);
-        workouts.add(workout);
+        boolean added = workouts.add(workout);
+        if (added) {
+            workout.setUserProfile(this);
+        }
     }
 
     public void removeWorkout(Workout workout) {
@@ -49,5 +51,17 @@ public class UserProfile extends BaseEntityNamed {
         this.performance = performance;
     }
 
-    //TODO добавить методы для ресолва bidirectional связи
+    public void addContest(Contest contest) {
+        boolean added = contests.add(contest);
+        if (added) {
+            contest.addMember(this);
+        }
+    }
+
+    public void removeContest(Contest contest) {
+        boolean removed = contests.remove(contest);
+        if (removed) {
+            contest.removeMember(this);
+        }
+    }
 }
