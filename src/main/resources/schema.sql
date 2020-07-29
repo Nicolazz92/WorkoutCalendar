@@ -27,7 +27,7 @@ CREATE TABLE WORKOUT
     date            TIMESTAMP,
     intensive       VARCHAR(10),
     type            VARCHAR(10),
-    track           LONG,
+    track_id        LONG,
     parent_workout  LONG
 --     foreign key (track) references TRACK (id),
 --     foreign key (parent_workout) references WORKOUT (id)
@@ -40,7 +40,7 @@ CREATE TABLE USER_PROFILE
     image          BLOB,
     weight         DOUBLE,
     height         DOUBLE,
-    lunxVolume     DOUBLE,
+    lunx_volume    DOUBLE,
     performance_id LONG
 --     foreign key (performance_id) references PERFORMANCE (id),
 );
@@ -52,7 +52,7 @@ CREATE TABLE CONTEST
     id        LONG PRIMARY KEY NOT NULL,
     name      VARCHAR(255),
     track_id  LONG,
-    date      TIMESTAMP,
+    date      DATE,
     winner_id LONG
 --     foreign key (winner_id) references USER_PROFILE (id)
 );

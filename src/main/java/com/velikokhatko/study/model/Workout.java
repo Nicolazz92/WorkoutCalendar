@@ -20,7 +20,7 @@ import java.util.Set;
 public class Workout extends BaseEntityNamed {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_profile_id", insertable = false, updatable = false)
     private UserProfile userProfile;
 
     private LocalTime duration;
@@ -34,7 +34,7 @@ public class Workout extends BaseEntityNamed {
     private WorkoutType type;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "track_id")
     private Track track;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

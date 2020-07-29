@@ -22,13 +22,11 @@ public class UserProfile extends BaseEntityNamed {
     private Double height;
     private Double lunxVolume;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id")
+    @OneToMany(mappedBy = "userProfile", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Workout> workouts = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = false)
-    @JoinColumn(name = "id")
-    @Column(name = "performance_id")
+    @JoinColumn(name = "performance_id")
     private Performance performance;
 
     @ManyToMany(mappedBy = "members")

@@ -17,8 +17,7 @@ import java.util.Set;
 public class Contest extends BaseEntityNamed {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id")
-    @Column(name = "track_id")
+    @JoinColumn(name = "track_id")
     private Track track;
 
     @Column(name = "date")
@@ -32,8 +31,7 @@ public class Contest extends BaseEntityNamed {
     private Set<UserProfile> members;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @Column(name = "winner_id")
+    @JoinColumn(name = "winner_id")
     private UserProfile winner;
 
     public Set<UserProfile> getMembers() {
