@@ -1768,7 +1768,7 @@
 								"$ref": "AAAAAAFzey+70bXx7/E="
 							},
 							"name": "duration",
-							"type": "Integer",
+							"type": "LocalTime",
 							"length": 0
 						},
 						{

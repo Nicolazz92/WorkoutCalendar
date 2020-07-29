@@ -18,8 +18,10 @@ public class Contest extends BaseEntityNamed {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id")
+    @Column(name = "track_id")
     private Track track;
 
+    @Column(name = "date")
     private LocalDate date;
 
     @ManyToMany
@@ -31,6 +33,7 @@ public class Contest extends BaseEntityNamed {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
+    @Column(name = "winner_id")
     private UserProfile winner;
 
     public Set<UserProfile> getMembers() {

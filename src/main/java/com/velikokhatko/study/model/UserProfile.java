@@ -28,6 +28,7 @@ public class UserProfile extends BaseEntityNamed {
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = false)
     @JoinColumn(name = "id")
+    @Column(name = "performance_id")
     private Performance performance;
 
     @ManyToMany(mappedBy = "members")

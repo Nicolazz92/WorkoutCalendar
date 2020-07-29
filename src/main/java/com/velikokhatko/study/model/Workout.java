@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class Workout extends BaseEntityNamed {
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private UserProfile userProfile;
 
-    private Integer duration;
+    private LocalTime duration;
 
     private LocalDateTime date;
 
@@ -37,6 +38,6 @@ public class Workout extends BaseEntityNamed {
     private Track track;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "parent_workout")
     private Set<Workout> workouts = new HashSet<>();
 }
