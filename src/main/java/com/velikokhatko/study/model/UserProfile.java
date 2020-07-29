@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +33,10 @@ public class UserProfile extends BaseEntityNamed {
     @ManyToMany(mappedBy = "members")
     private Set<Contest> contests = new HashSet<>();
 
+    public Set<Workout> getWorkouts() {
+        return Collections.unmodifiableSet(workouts);
+    }
+
     public void addWorkout(Workout workout) {
         boolean added = workouts.add(workout);
         if (added) {
@@ -49,6 +54,10 @@ public class UserProfile extends BaseEntityNamed {
     public void setPerformance(Performance performance) {
         performance.setUserProfile(this);
         this.performance = performance;
+    }
+
+    public Set<Contest> getContests() {
+        return Collections.unmodifiableSet(contests);
     }
 
     public void addContest(Contest contest) {

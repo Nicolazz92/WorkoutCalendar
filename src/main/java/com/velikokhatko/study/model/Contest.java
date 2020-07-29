@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Set;
 
 @Data
@@ -31,6 +32,10 @@ public class Contest extends BaseEntityNamed {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     private UserProfile winner;
+
+    public Set<UserProfile> getMembers() {
+        return Collections.unmodifiableSet(members);
+    }
 
     public void addMember(UserProfile member) {
         boolean added = members.add(member);
