@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 class ContestRepositoryTest {
-
     @Autowired
     private ContestRepository contestRepository;
     @Autowired
@@ -24,7 +23,7 @@ class ContestRepositoryTest {
     private UserProfileRepository userProfileRepository;
 
     @Test
-    public void test() {
+    public void saveTest() {
         Track track = new Track();
         track.setName("testTrack");
         track.setImage(new Byte[]{0b11, 0b01});

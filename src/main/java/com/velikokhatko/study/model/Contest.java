@@ -40,7 +40,7 @@ public class Contest extends BaseEntityNamed {
     }
 
     public void setMembers(Set<UserProfile> set) {
-        throw new UnsupportedOperationException("for modify members collection " +
+        throw new UnsupportedOperationException("for modify 'members' collection " +
                 "use addMember(UserProfile member) and removeMember(UserProfile member)");
     }
 
@@ -52,8 +52,8 @@ public class Contest extends BaseEntityNamed {
     }
 
     public void removeMember(UserProfile member) {
-        boolean removed = members.remove(member);
-        if (removed) {
+        members.remove(member);
+        if (member.getContests().contains(this)) {
             member.removeContest(this);
         }
     }

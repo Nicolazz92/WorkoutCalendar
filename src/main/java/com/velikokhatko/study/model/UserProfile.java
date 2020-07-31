@@ -36,6 +36,11 @@ public class UserProfile extends BaseEntityNamed {
         return Collections.unmodifiableSet(workouts);
     }
 
+    public void setWorkouts(Set<Workout> workouts) {
+        throw new UnsupportedOperationException("for modify 'workouts' collection " +
+                "use addWorkout(Workout workout) and removeWorkout(Workout workout)");
+    }
+
     public void addWorkout(Workout workout) {
         boolean added = workouts.add(workout);
         if (added) {
@@ -50,8 +55,6 @@ public class UserProfile extends BaseEntityNamed {
         }
     }
 
-    //TODO добавить setterы с unsupported
-
     public void setPerformance(Performance performance) {
         performance.setUserProfile(this);
         this.performance = performance;
@@ -59,6 +62,11 @@ public class UserProfile extends BaseEntityNamed {
 
     public Set<Contest> getContests() {
         return Collections.unmodifiableSet(contests);
+    }
+
+    public void setContests(Set<Contest> contests) {
+        throw new UnsupportedOperationException("for modify 'contests' collection " +
+                "use addContest(Contest contest) and removeContest(Contest contest)");
     }
 
     public void addContest(Contest contest) {
@@ -69,8 +77,8 @@ public class UserProfile extends BaseEntityNamed {
     }
 
     public void removeContest(Contest contest) {
-        boolean removed = contests.remove(contest);
-        if (removed) {
+        contests.remove(contest);
+        if (contest.getMembers().contains(this)) {
             contest.removeMember(this);
         }
     }
