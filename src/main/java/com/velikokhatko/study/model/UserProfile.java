@@ -25,7 +25,7 @@ public class UserProfile extends BaseEntityNamed {
     @OneToMany(mappedBy = "userProfile", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Workout> workouts = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "performance_id")
     private Performance performance;
 
@@ -49,6 +49,8 @@ public class UserProfile extends BaseEntityNamed {
             workout.setUserProfile(null);
         }
     }
+
+    //TODO добавить setterы с unsupported
 
     public void setPerformance(Performance performance) {
         performance.setUserProfile(this);

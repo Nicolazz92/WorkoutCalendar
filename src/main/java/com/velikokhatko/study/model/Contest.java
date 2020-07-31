@@ -8,6 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -16,7 +17,7 @@ import java.util.Set;
 @Entity
 public class Contest extends BaseEntityNamed {
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "track_id")
     private Track track;
 
@@ -28,7 +29,7 @@ public class Contest extends BaseEntityNamed {
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "CONTEST_ID")
     )
-    private Set<UserProfile> members;
+    private Set<UserProfile> members = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "winner_id")
@@ -36,6 +37,11 @@ public class Contest extends BaseEntityNamed {
 
     public Set<UserProfile> getMembers() {
         return Collections.unmodifiableSet(members);
+    }
+
+    public void setMembers(Set<UserProfile> set) {
+        throw new UnsupportedOperationException("for modify members collection " +
+                "use addMember(UserProfile member) and removeMember(UserProfile member)");
     }
 
     public void addMember(UserProfile member) {

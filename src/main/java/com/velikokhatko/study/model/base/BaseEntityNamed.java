@@ -1,13 +1,14 @@
 package com.velikokhatko.study.model.base;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+@SuppressWarnings("Lombok")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
 @MappedSuperclass
 public class BaseEntityNamed extends BaseEntity {
 
