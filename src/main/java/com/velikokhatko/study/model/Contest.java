@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"members", "winner"})
 @ToString(callSuper = true, exclude = {"members", "winner"})
 @Entity
 public class Contest extends BaseEntityNamed {
@@ -45,8 +45,8 @@ public class Contest extends BaseEntityNamed {
     }
 
     public void addMember(UserProfile member) {
-        boolean added = members.add(member);
-        if (added) {
+        members.add(member);
+        if (!member.getContests().contains(this)) {
             member.addContest(this);
         }
     }

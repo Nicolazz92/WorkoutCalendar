@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ContestTest {
 
     @Test
-    public void equalsTest() {
+    public void businessKeyTest() {
         Contest contestOne = new Contest();
         contestOne.setDate(LocalDate.now());
         contestOne.setName("contest");
@@ -32,22 +32,19 @@ class ContestTest {
 
         contestOne.addMember(userProfile);
         assertEquals(userProfile.getContests().stream().findFirst().orElse(new Contest()), contestOne);
-        assertNotEquals(contestOne, contestTwo);
-        contestTwo.addMember(userProfile);
         assertEquals(contestOne, contestTwo);
 
         contestOne.removeMember(userProfile);
         assertEquals(0, userProfile.getContests().size());
-        assertNotEquals(contestOne, contestTwo);
-        contestTwo.removeMember(userProfile);
         assertEquals(contestOne, contestTwo);
 
         contestOne.setWinner(userProfile);
-        assertNotEquals(contestOne, contestTwo);
-        contestTwo.setWinner(userProfile);
         assertEquals(contestOne, contestTwo);
+    }
 
-        assertThrows(UnsupportedOperationException.class, () -> contestOne.setMembers(new HashSet<>()));
-        assertThrows(UnsupportedOperationException.class, () -> contestOne.getMembers().add(userProfile));
+    @Test
+    public void unsupportedOperationsTest() {
+        assertThrows(UnsupportedOperationException.class, () -> new Contest().setMembers(new HashSet<>()));
+        assertThrows(UnsupportedOperationException.class, () -> new Contest().getMembers().add(new UserProfile()));
     }
 }

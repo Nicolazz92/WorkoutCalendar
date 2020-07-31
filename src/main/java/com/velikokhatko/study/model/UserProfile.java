@@ -70,8 +70,8 @@ public class UserProfile extends BaseEntityNamed {
     }
 
     public void addContest(Contest contest) {
-        boolean added = contests.add(contest);
-        if (added) {
+        contests.add(contest);
+        if (!contest.getMembers().contains(this)) {
             contest.addMember(this);
         }
     }
