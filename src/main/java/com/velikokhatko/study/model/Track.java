@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 
@@ -15,5 +16,6 @@ import javax.persistence.Lob;
 public class Track extends BaseEntityNamed {
 
     @Lob
+    @Column(columnDefinition = "BLOB")
     private Byte[] image;
 }

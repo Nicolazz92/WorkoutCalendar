@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -45,6 +46,7 @@ public class Contest extends BaseEntityNamed {
     }
 
     public void addMember(UserProfile member) {
+        Objects.requireNonNull(member, "member cannot be null");
         members.add(member);
         if (!member.getContests().contains(this)) {
             member.addContest(this);
@@ -52,6 +54,7 @@ public class Contest extends BaseEntityNamed {
     }
 
     public void removeMember(UserProfile member) {
+        Objects.requireNonNull(member, "member cannot be null");
         members.remove(member);
         if (member.getContests().contains(this)) {
             member.removeContest(this);

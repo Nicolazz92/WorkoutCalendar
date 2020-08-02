@@ -8,15 +8,17 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = "contests")
-@ToString(callSuper = true, exclude = {"image", "workouts", "performance"})
+@EqualsAndHashCode(callSuper = true, exclude = {"workouts", "contests"})
+@ToString(callSuper = true, exclude = {"image", "workouts", "contests", "performance"})
 @Entity
 public class UserProfile extends BaseEntityNamed {
 
     @Lob
+    @Column(columnDefinition = "BLOB")
     private Byte[] image;
     private Double weight;
     private Double height;
@@ -42,6 +44,7 @@ public class UserProfile extends BaseEntityNamed {
     }
 
     public void addWorkout(Workout workout) {
+        Objects.requireNonNull(workout, "workout cannot be null");
         boolean added = workouts.add(workout);
         if (added) {
             workout.setUserProfile(this);
@@ -49,15 +52,11 @@ public class UserProfile extends BaseEntityNamed {
     }
 
     public void removeWorkout(Workout workout) {
+        Objects.requireNonNull(workout, "workout cannot be null");
         boolean removed = workouts.remove(workout);
         if (removed) {
             workout.setUserProfile(null);
         }
-    }
-
-    public void setPerformance(Performance performance) {
-        performance.setUserProfile(this);
-        this.performance = performance;
     }
 
     public Set<Contest> getContests() {
@@ -70,15 +69,17 @@ public class UserProfile extends BaseEntityNamed {
     }
 
     public void addContest(Contest contest) {
-        contests.add(contest);
-        if (!contest.getMembers().contains(this)) {
+        Objects.requireNonNull(contest, "contest cannot be null");
+        boolean added = contests.add(contest);
+        if (added) {
             contest.addMember(this);
         }
     }
 
     public void removeContest(Contest contest) {
-        contests.remove(contest);
-        if (contest.getMembers().contains(this)) {
+        Objects.requireNonNull(contest, "contest cannot be null");
+        boolean removed = contests.remove(contest);
+        if (removed) {
             contest.removeMember(this);
         }
     }
