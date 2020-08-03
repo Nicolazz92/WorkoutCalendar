@@ -45,7 +45,7 @@ public class Workout extends BaseEntityNamed {
 
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
-        workouts.forEach(userProfile::addWorkout);
+        workouts.forEach(workout -> workout.setUserProfile(userProfile));
     }
 
     public Set<Workout> getWorkouts() {

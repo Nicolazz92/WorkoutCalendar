@@ -70,6 +70,6 @@ class UserProfileRepositoryTest {
         performanceRepository.save(persistedPerformance);
 
         assertEquals(performance, userProfileRepository.findById(persistedUserProfile.getId()).orElse(new UserProfile()).getPerformance());
-        //FIXME не работает обратная ссылка assertEquals(userProfile, performanceRepository.findById(persistedPerformance.getId()).orElse(new Performance()).getUserProfile());
+        assertEquals(userProfile, performanceRepository.findById(persistedPerformance.getId()).orElse(new Performance()).getUserProfile());
     }
 }

@@ -2,15 +2,16 @@ create sequence hibernate_sequence start with 1000 increment by 1;
 
 create table PERFORMANCE
 (
-    id        LONG PRIMARY KEY NOT NULL,
-    run100m   TIME,
-    run500m   TIME,
-    run1000m  TIME,
-    swim100m  TIME,
-    swim500m  TIME,
-    swim1000m TIME,
-    bike10km  TIME,
-    bike25km  TIME
+    id              LONG PRIMARY KEY NOT NULL,
+    user_profile_id LONG,
+    run100m         TIME,
+    run500m         TIME,
+    run1000m        TIME,
+    swim100m        TIME,
+    swim500m        TIME,
+    swim1000m       TIME,
+    bike10km        TIME,
+    bike25km        TIME
 );
 
 CREATE TABLE TRACK

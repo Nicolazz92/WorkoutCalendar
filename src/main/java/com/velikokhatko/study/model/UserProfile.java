@@ -59,6 +59,12 @@ public class UserProfile extends BaseEntityNamed {
         }
     }
 
+    public void setPerformance(Performance performance) {
+        Objects.requireNonNull(performance, "performance cannot be null");
+        this.performance = performance;
+        performance.setUserProfile(this);
+    }
+
     public Set<Contest> getContests() {
         return Collections.unmodifiableSet(contests);
     }
