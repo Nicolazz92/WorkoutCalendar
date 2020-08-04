@@ -29,18 +29,18 @@ class ContestRepositoryTest {
 
         UserProfile userProfile = new UserProfile();
         userProfile.setName("testUser");
-        UserProfile persistedUserProfile = userProfileRepository.save(userProfile);
+        userProfileRepository.save(userProfile);
 
         Contest contest = new Contest();
         contest.setDate(LocalDate.now());
         contest.setName("testContest");
         contest.setTrack(track);
         contest.addMember(userProfile);
-        Contest persistedContest = contestRepository.save(contest);
+        contestRepository.save(contest);
 
-        assertNotNull(persistedContest.getId());
-        assertEquals(userProfile, persistedContest.getMembers().stream().findAny().orElse(new UserProfile()));
-        assertEquals(contest, persistedUserProfile.getContests().stream().findFirst().orElse(new Contest()));
-        assertEquals(track, persistedContest.getTrack());
+        assertNotNull(contest.getId());
+        assertEquals(userProfile, contest.getMembers().stream().findAny().orElse(new UserProfile()));
+        assertEquals(contest, userProfile.getContests().stream().findFirst().orElse(new Contest()));
+        assertEquals(track, contest.getTrack());
     }
 }

@@ -30,46 +30,46 @@ class UserProfileRepositoryTest {
     public void saveTest() {
         UserProfile userProfile = new UserProfile();
         userProfile.setName("userProfile");
-        UserProfile persistedUserProfile = userProfileRepository.save(userProfile);
+        userProfileRepository.save(userProfile);
 
         Workout workout = new Workout();
         workout.setName("testWorkout");
-        Workout persistedWorkout = workoutRepository.save(workout);
+        workoutRepository.save(workout);
 
-        persistedUserProfile.addWorkout(persistedWorkout);
-        assertEquals(workout, userProfileRepository.findById(persistedUserProfile.getId()).orElse(new UserProfile())
+        userProfile.addWorkout(workout);
+        assertEquals(workout, userProfileRepository.findById(userProfile.getId()).orElse(new UserProfile())
                 .getWorkouts().stream().findFirst().orElse(new Workout()));
-        assertEquals(userProfile, workoutRepository.findById(persistedWorkout.getId()).orElse(new Workout()).getUserProfile());
-        persistedUserProfile.removeWorkout(persistedWorkout);
-        assertNull(Objects.requireNonNull(workoutRepository.findById(persistedWorkout.getId()).orElse(null)).getUserProfile());
-        assertEquals(0, Objects.requireNonNull(userProfileRepository.findById(persistedUserProfile.getId()).orElse(null))
+        assertEquals(userProfile, workoutRepository.findById(workout.getId()).orElse(new Workout()).getUserProfile());
+        userProfile.removeWorkout(workout);
+        assertNull(Objects.requireNonNull(workoutRepository.findById(workout.getId()).orElse(null)).getUserProfile());
+        assertEquals(0, Objects.requireNonNull(userProfileRepository.findById(userProfile.getId()).orElse(null))
                 .getWorkouts().size());
 
         Contest contest = new Contest();
         contest.setName("testContest");
-        Contest persistedContext = contestRepository.save(contest);
+        contestRepository.save(contest);
 
-        persistedUserProfile.addContest(persistedContext);
-        assertEquals(contest, userProfileRepository.findById(persistedUserProfile.getId()).orElse(new UserProfile())
+        userProfile.addContest(contest);
+        assertEquals(contest, userProfileRepository.findById(userProfile.getId()).orElse(new UserProfile())
                 .getContests().stream().findFirst().orElse(new Contest()));
-        assertEquals(userProfile, contestRepository.findById(persistedContext.getId()).orElse(new Contest()).getMembers()
+        assertEquals(userProfile, contestRepository.findById(contest.getId()).orElse(new Contest()).getMembers()
                 .stream().findFirst().orElse(new UserProfile()));
-        persistedUserProfile.removeContest(persistedContext);
-        assertEquals(0, Objects.requireNonNull(userProfileRepository.findById(persistedUserProfile.getId()).orElse(null))
+        userProfile.removeContest(contest);
+        assertEquals(0, Objects.requireNonNull(userProfileRepository.findById(userProfile.getId()).orElse(null))
                 .getContests().size());
-        assertEquals(0, Objects.requireNonNull(contestRepository.findById(persistedContext.getId()).orElse(null))
+        assertEquals(0, Objects.requireNonNull(contestRepository.findById(contest.getId()).orElse(null))
                 .getMembers().size());
 
         Performance performance = new Performance();
         performance.setRun100m(LocalTime.of(0, 0, 16, 98));
         performance.setBike10km(LocalTime.of(0, 35, 20));
         performance.setSwim100m(LocalTime.of(0, 3, 11));
-        Performance persistedPerformance = performanceRepository.save(performance);
+        performanceRepository.save(performance);
 
-        persistedUserProfile.setPerformance(persistedPerformance);
-        performanceRepository.save(persistedPerformance);
+        userProfile.setPerformance(performance);
+        performanceRepository.save(performance);
 
-        assertEquals(performance, userProfileRepository.findById(persistedUserProfile.getId()).orElse(new UserProfile()).getPerformance());
-        assertEquals(userProfile, performanceRepository.findById(persistedPerformance.getId()).orElse(new Performance()).getUserProfile());
+        assertEquals(performance, userProfileRepository.findById(userProfile.getId()).orElse(new UserProfile()).getPerformance());
+        assertEquals(userProfile, performanceRepository.findById(performance.getId()).orElse(new Performance()).getUserProfile());
     }
 }

@@ -41,6 +41,7 @@ class WorkoutTest {
 
         assertThrows(IllegalArgumentException.class, () -> workout1.addWorkout(workout2));
         assertThrows(IllegalArgumentException.class, () -> workout1.removeWorkout(workout2));
+        assertThrows(IllegalArgumentException.class, () -> workout1.setUserProfile(new UserProfile()));
     }
 
     @Test

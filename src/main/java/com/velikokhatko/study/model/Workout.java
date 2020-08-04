@@ -44,8 +44,16 @@ public class Workout extends BaseEntityNamed {
     private Set<Workout> workouts = new HashSet<>();
 
     public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
-        workouts.forEach(workout -> workout.setUserProfile(userProfile));
+        if (Objects.isNull(userProfile)) {
+            this.userProfile = null;
+            workouts.forEach(workout -> workout.setUserProfile(null));
+        } else if (userProfile.getWorkouts().contains(this)) {
+            this.userProfile = userProfile;
+            workouts.forEach(userProfile::addWorkout);
+        } else {
+            throw new IllegalArgumentException("userProfile does not contains workout. " +
+                    "Use UserProfile.addWorkout(Workout workout) to modify userProfile.workouts. ");
+        }
     }
 
     public Set<Workout> getWorkouts() {
@@ -60,7 +68,7 @@ public class Workout extends BaseEntityNamed {
     public void addWorkout(Workout workout) {
         Objects.requireNonNull(workout, "workout cannot be null");
         if (usersDoesNotMatch(workout)) {
-            throw new IllegalArgumentException("child workout's user does not match with current user");
+            throw new IllegalArgumentException("child workout's user does not match with parent user");
         }
         workouts.add(workout);
     }
@@ -68,7 +76,7 @@ public class Workout extends BaseEntityNamed {
     public void removeWorkout(Workout workout) {
         Objects.requireNonNull(workout, "workout cannot be null");
         if (usersDoesNotMatch(workout)) {
-            throw new IllegalArgumentException("child workout's user does not match with current user");
+            throw new IllegalArgumentException("child workout's user does not match with parent user");
         }
         workouts.remove(workout);
     }
