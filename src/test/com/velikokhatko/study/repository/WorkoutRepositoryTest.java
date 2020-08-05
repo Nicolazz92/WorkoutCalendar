@@ -50,8 +50,9 @@ class WorkoutRepositoryTest {
         workoutChild.setTrack(track);
         workoutRepository.save(workoutParent);
 
-        workoutParent.addWorkout(workoutChild);
+        userProfile.addWorkout(workoutChild);
         userProfile.addWorkout(workoutParent);
+        workoutParent.addWorkout(workoutChild);
 
         assertEquals(workoutChild, userProfileRepository.findById(userProfile.getId()).orElse(new UserProfile())
                 .getWorkouts().stream().filter(workout -> !workout.getWorkouts().isEmpty()).findFirst().orElse(new Workout())

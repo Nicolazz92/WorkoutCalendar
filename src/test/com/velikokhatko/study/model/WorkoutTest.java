@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class WorkoutTest {
 
@@ -30,16 +29,20 @@ class WorkoutTest {
 
     @Test
     public void failedTest() {
-        Workout workout1 = new Workout();
-        workout1.setName("workout1");
         UserProfile userProfile1 = new UserProfile();
         userProfile1.setName("userProfile1");
+
+        Workout workout1 = new Workout();
+        workout1.setName("workout1");
         userProfile1.addWorkout(workout1);
+        assertThrows(IllegalArgumentException.class, () -> new UserProfile().addWorkout(workout1));
 
         Workout workout2 = new Workout();
         workout2.setName("workout2");
 
         assertThrows(IllegalArgumentException.class, () -> workout1.addWorkout(workout2));
+
+        userProfile1.addWorkout(workout2);
         assertThrows(IllegalArgumentException.class, () -> workout1.removeWorkout(workout2));
         assertThrows(IllegalArgumentException.class, () -> workout1.setUserProfile(new UserProfile()));
     }
@@ -51,15 +54,19 @@ class WorkoutTest {
 
         Workout workout1 = new Workout();
         workout1.setName("workout1");
+        userProfile1.addWorkout(workout1);
 
         Workout workout2 = new Workout();
         workout2.setName("workout2");
+        userProfile1.addWorkout(workout2);
 
         workout1.addWorkout(workout2);
-        assertEquals(workout2, workout1.getWorkouts().stream().findFirst().orElse(new Workout()));
-
-        userProfile1.addWorkout(workout1);
-        assertEquals(userProfile1, workout2.getUserProfile());
+        assertTrue(workout1.getWorkouts().stream().findFirst().isPresent());
+        assertNull(workout1.getWorkouts().stream().findFirst().get().getUserProfile());
+        assertEquals(1, userProfile1.getWorkouts().size());
+        assertTrue(userProfile1.getWorkouts().stream().findFirst().isPresent());
+        assertEquals(workout1, userProfile1.getWorkouts().stream().findFirst().get());
+        assertNull(workout2.getUserProfile());
     }
 
     @Test

@@ -47,6 +47,9 @@ public class UserProfile extends BaseEntityNamed {
 
     public void addWorkout(Workout workout) {
         Objects.requireNonNull(workout, "workout cannot be null");
+        if (Objects.nonNull(workout.getUserProfile())) {
+            throw new IllegalArgumentException("adding Workout cannot be linked to another UserProfile");
+        }
         boolean added = workouts.add(workout);
         if (added) {
             workout.setUserProfile(this);

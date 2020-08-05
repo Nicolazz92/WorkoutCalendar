@@ -16,6 +16,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Экземпляр тренировки.
+ * Добавление дочерней(child) тренировки к родительской(parent) происходит следующим образом.
+ * child добавляется к тому же userProfile, что и parent, после чего child добавляется к parent.
+ * Из userProfile удаляется child, и child остаётся связанным с userProfile только через parent.
+ */
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true, exclude = "userProfile")
@@ -51,7 +57,7 @@ public class Workout extends BaseEntityNamed {
             workouts.forEach(workout -> workout.setUserProfile(null));
         } else if (userProfile.getWorkouts().contains(this)) {
             this.userProfile = userProfile;
-            workouts.forEach(userProfile::addWorkout);
+            workouts.forEach(userProfile::removeWorkout);
         } else {
             throw new IllegalArgumentException("userProfile does not contains workout. " +
                     "Use UserProfile.addWorkout(Workout workout) to modify userProfile.workouts. ");
@@ -72,13 +78,14 @@ public class Workout extends BaseEntityNamed {
         if (usersDoesNotMatch(workout)) {
             throw new IllegalArgumentException("child workout's user does not match with parent user");
         }
+        userProfile.removeWorkout(workout);
         workouts.add(workout);
     }
 
     public void removeWorkout(Workout workout) {
         Objects.requireNonNull(workout, "workout cannot be null");
-        if (usersDoesNotMatch(workout)) {
-            throw new IllegalArgumentException("child workout's user does not match with parent user");
+        if (Objects.nonNull(workout.userProfile)) {
+            throw new IllegalArgumentException("child workout cannot be linked directly to user");
         }
         workouts.remove(workout);
     }
