@@ -3,6 +3,7 @@ package com.velikokhatko.study.model;
 import com.velikokhatko.study.model.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.OneToOne;
 import java.time.LocalTime;
 
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false, exclude = "userProfile")
 @ToString(callSuper = true, exclude = "userProfile")
 @Entity

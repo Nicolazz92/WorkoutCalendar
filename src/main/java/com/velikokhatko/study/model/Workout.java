@@ -5,6 +5,7 @@ import com.velikokhatko.study.model.enums.Intensive;
 import com.velikokhatko.study.model.enums.WorkoutType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true, exclude = "userProfile")
 @ToString(callSuper = true, exclude = "userProfile")
 @Entity
