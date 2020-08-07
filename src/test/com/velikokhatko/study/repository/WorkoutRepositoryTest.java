@@ -38,7 +38,7 @@ class WorkoutRepositoryTest {
         workoutParent.setDuration(LocalTime.of(1, 12));
         workoutParent.setDate(LocalDateTime.now());
         workoutParent.setIntensive(Intensive.NORMAL);
-        workoutParent.setType(WorkoutType.BIKE);
+        workoutParent.setType(WorkoutType.BICYCLE);
         workoutParent.setTrack(track);
         workoutRepository.save(workoutParent);
 

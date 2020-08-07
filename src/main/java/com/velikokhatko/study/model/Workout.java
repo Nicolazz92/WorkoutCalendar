@@ -32,7 +32,7 @@ import java.util.Set;
 public class Workout extends BaseEntityNamed {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_profile_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_profile_id")
     private UserProfile userProfile;
 
     private LocalTime duration;
