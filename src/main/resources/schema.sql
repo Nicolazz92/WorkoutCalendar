@@ -26,6 +26,7 @@ CREATE TABLE WORKOUT
     id              LONG PRIMARY KEY NOT NULL,
     name            VARCHAR(255),
     user_profile_id LONG,
+    is_root         BOOLEAN          NOT NULL,
     duration        TIME,
     date            TIMESTAMP,
     intensive       VARCHAR(10),

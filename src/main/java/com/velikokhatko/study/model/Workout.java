@@ -5,7 +5,6 @@ import com.velikokhatko.study.model.enums.Intensive;
 import com.velikokhatko.study.model.enums.WorkoutType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -16,17 +15,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-/**
- * Экземпляр тренировки.
- * Добавление дочерней(child) тренировки к родительской(parent) происходит следующим образом.
- * child добавляется к тому же userProfile, что и parent, после чего child добавляется к parent.
- * Из userProfile удаляется child, и child остаётся связанным с userProfile только через parent.
- * Это сделено для невозможности добавить к тренировке parent, созданной одним пользователем,
- * тренировку child, созданную другим пользователем.
- */
 @Data
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper = true, exclude = "userProfile")
+@EqualsAndHashCode(callSuper = true, exclude = {"userProfile", "workouts", "isRoot"})
 @ToString(callSuper = true, exclude = "userProfile")
 @Entity
 public class Workout extends BaseEntityNamed {
@@ -34,6 +24,9 @@ public class Workout extends BaseEntityNamed {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_profile_id")
     private UserProfile userProfile;
+
+    @Column(nullable = false)
+    private Boolean isRoot;
 
     private LocalTime duration;
 
@@ -53,13 +46,15 @@ public class Workout extends BaseEntityNamed {
     @JoinColumn(name = "parent_workout")
     private Set<Workout> workouts = new HashSet<>();
 
+    public Workout() {
+        isRoot = Boolean.TRUE;
+    }
+
     public void setUserProfile(UserProfile userProfile) {
         if (Objects.isNull(userProfile)) {
             this.userProfile = null;
-            workouts.forEach(workout -> workout.setUserProfile(null));
         } else if (userProfile.getWorkouts().contains(this)) {
             this.userProfile = userProfile;
-            workouts.forEach(userProfile::removeWorkout);
         } else {
             throw new IllegalArgumentException("userProfile does not contains workout. " +
                     "Use UserProfile.addWorkout(Workout workout) to modify userProfile.workouts. ");
@@ -79,17 +74,22 @@ public class Workout extends BaseEntityNamed {
         Objects.requireNonNull(workout, "workout cannot be null");
         if (usersDoesNotMatch(workout)) {
             throw new IllegalArgumentException("child workout's user does not match with parent user");
+        } else if (Boolean.FALSE.equals(workout.isRoot)) {
+            throw new IllegalArgumentException("workout is already linked to another root workout");
         }
-        userProfile.removeWorkout(workout);
         workouts.add(workout);
+        workout.setIsRoot(Boolean.FALSE);
     }
 
     public void removeWorkout(Workout workout) {
         Objects.requireNonNull(workout, "workout cannot be null");
-        if (Objects.nonNull(workout.userProfile)) {
-            throw new IllegalArgumentException("child workout cannot be linked directly to user");
+        if (usersDoesNotMatch(workout)) {
+            throw new IllegalArgumentException("child workout's user does not match with parent user");
+        } else if (workout.isRoot) {
+            throw new IllegalArgumentException("removing workout is root");
         }
         workouts.remove(workout);
+        workout.setIsRoot(Boolean.TRUE);
     }
 
     private boolean usersDoesNotMatch(Workout workout) {
