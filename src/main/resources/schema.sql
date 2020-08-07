@@ -3,7 +3,6 @@ create sequence hibernate_sequence start with 1000 increment by 1;
 create table PERFORMANCE
 (
     id              LONG PRIMARY KEY NOT NULL,
-    user_profile_id LONG,
     run100m         TIME,
     run500m         TIME,
     run1000m        TIME,

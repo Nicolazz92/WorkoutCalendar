@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.time.LocalTime;
 
@@ -19,7 +18,6 @@ import java.time.LocalTime;
 public class Performance extends BaseEntity {
 
     @OneToOne(mappedBy = "performance")
-    @JoinColumn(name = "user_profile_id")
     private UserProfile userProfile;
     private LocalTime run100m;
     private LocalTime run500m;
