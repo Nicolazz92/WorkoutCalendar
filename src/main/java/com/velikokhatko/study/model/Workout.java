@@ -21,6 +21,8 @@ import java.util.Set;
  * Добавление дочерней(child) тренировки к родительской(parent) происходит следующим образом.
  * child добавляется к тому же userProfile, что и parent, после чего child добавляется к parent.
  * Из userProfile удаляется child, и child остаётся связанным с userProfile только через parent.
+ * Это сделено для невозможности добавить к тренировке parent, созданной одним пользователем,
+ * тренировку child, созданную другим пользователем.
  */
 @Data
 @NoArgsConstructor
