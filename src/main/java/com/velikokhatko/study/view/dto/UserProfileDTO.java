@@ -16,7 +16,9 @@ public class UserProfileDTO extends BaseEntityNamedDTO {
     private Double lunxVolume;
     //Body Mass Index = weight/height^2
     private Double bmi;
+    private PerformanceDTO performanceDTO;
     private List<WorkoutDTO> rootWorkouts;
+    private List<ContestDTO> contests;
 
     @Builder
     public UserProfileDTO(Long id,
@@ -26,13 +28,17 @@ public class UserProfileDTO extends BaseEntityNamedDTO {
                           Double height,
                           Double lunxVolume,
                           Double bmi,
-                          List<WorkoutDTO> rootWorkouts) {
+                          PerformanceDTO performanceDTO,
+                          List<WorkoutDTO> rootWorkouts,
+                          List<ContestDTO> contests) {
         super(id, name);
         this.image = image;
         this.weight = weight;
         this.height = height;
         this.lunxVolume = lunxVolume;
         this.bmi = bmi;
+        this.performanceDTO = performanceDTO;
         this.rootWorkouts = rootWorkouts;
+        this.contests = contests;
     }
 }

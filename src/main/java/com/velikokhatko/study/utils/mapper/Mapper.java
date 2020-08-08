@@ -4,11 +4,11 @@ import com.velikokhatko.study.model.base.BaseEntity;
 import com.velikokhatko.study.view.dto.base.BaseEntityDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 
-public interface Mapper<P extends BaseEntity, DTO extends BaseEntityDTO> {
+public interface Mapper<E extends BaseEntity, DTO extends BaseEntityDTO> {
 
-    DTO persistedToDTO(P persisted);
+    DTO entityToDTO(E entity);
 
-    BaseEntityNamedDTO persistedToBaseEntityNamedDTO(P persisted);
+    BaseEntityNamedDTO entityToBaseEntityNamedDTO(E entity);
 
-    P dtoToTransient(DTO dto);
+    E dtoToEntity(DTO dto);
 }

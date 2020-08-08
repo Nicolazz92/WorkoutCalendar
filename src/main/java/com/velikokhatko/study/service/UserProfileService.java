@@ -30,7 +30,7 @@ public class UserProfileService {
     public List<UserProfileDTO> getReducedUsers(String... sortByFields) {
         List<UserProfileDTO> profiles = userProfileRepository
                 .findAll((root, query, criteriaBuilder) -> criteriaBuilder.and(), Sort.by(sortByFields))
-                .stream().map(userProfileDTOMapper::persistedToDTO)
+                .stream().map(userProfileDTOMapper::entityToDTO)
                 .collect(Collectors.toList());
         return profiles;
     }
