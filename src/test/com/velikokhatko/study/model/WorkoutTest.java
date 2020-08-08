@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WorkoutTest {
 
     @Test
-    public void successTest() {
+    public void successAddAndRemoveTest() {
         Workout workout1 = new Workout();
         workout1.setName("workout1");
         UserProfile userProfile1 = new UserProfile();
@@ -62,12 +62,10 @@ class WorkoutTest {
 
         assertThrows(IllegalArgumentException.class, () -> workout1.removeWorkout(workout2));
         assertThrows(IllegalArgumentException.class, () -> workout1.setUserProfile(new UserProfile()));
-
-
     }
 
     @Test
-    public void cascadeUserProfileSetTest() {
+    public void cascadeUserProfileAddWorkoutSetTest() {
         UserProfile userProfile1 = new UserProfile();
         userProfile1.setName("userProfile1");
 

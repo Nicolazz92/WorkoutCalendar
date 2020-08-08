@@ -1,7 +1,7 @@
 package com.velikokhatko.study.controller;
 
 import com.velikokhatko.study.service.UserProfileService;
-import com.velikokhatko.study.view.dto.UserReducedDTO;
+import com.velikokhatko.study.view.dto.UserProfileDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -20,9 +20,9 @@ class UserProfileControllerTest {
     @Mock
     private UserProfileService userProfileService;
     private MockMvc mockMvc;
-    List<UserReducedDTO> userReducedDTOS = Arrays.asList(
-            UserReducedDTO.builder().id(1000L).name("testName1").workouts(2).build(),
-            UserReducedDTO.builder().id(1001L).name("testName2").workouts(3).build()
+    List<UserProfileDTO> userReducedDTOS = Arrays.asList(
+            UserProfileDTO.builder().id(1000L).name("testName1").build(),
+            UserProfileDTO.builder().id(1001L).name("testName2").build()
     );
 
     @BeforeEach
