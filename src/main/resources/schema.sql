@@ -31,9 +31,9 @@ CREATE TABLE WORKOUT
     intensive       VARCHAR(10),
     type            VARCHAR(10),
     track_id        LONG,
-    parent_workout  LONG
---     foreign key (track) references TRACK (id),
---     foreign key (parent_workout) references WORKOUT (id)
+    parent_workout  LONG,
+    foreign key (track_id) references TRACK (id),
+    foreign key (parent_workout) references WORKOUT (id)
 );
 
 CREATE TABLE USER_PROFILE
@@ -44,11 +44,11 @@ CREATE TABLE USER_PROFILE
     weight         DOUBLE,
     height         DOUBLE,
     lunx_volume    DOUBLE,
-    performance_id LONG
---     foreign key (performance_id) references PERFORMANCE (id),
+    performance_id LONG,
+    foreign key (performance_id) references PERFORMANCE (id)
 );
--- alter table WORKOUT
---     add foreign key (user_profile_id) references USER_PROFILE (id);
+alter table WORKOUT
+    add foreign key (user_profile_id) references USER_PROFILE (id);
 
 CREATE TABLE CONTEST
 (
@@ -56,8 +56,8 @@ CREATE TABLE CONTEST
     name      VARCHAR(255),
     track_id  LONG,
     date      DATE,
-    winner_id LONG
---     foreign key (winner_id) references USER_PROFILE (id)
+    winner_id LONG,
+    foreign key (winner_id) references USER_PROFILE (id)
 );
 
 CREATE TABLE CONTEST_MEMBERS
@@ -65,6 +65,4 @@ CREATE TABLE CONTEST_MEMBERS
     CONTEST_ID LONG NOT NULL,
     USER_ID    LONG NOT NULL,
     PRIMARY KEY (CONTEST_ID, USER_ID)
---     foreign key (CONTEST_ID) references CONTEST (id),
---     foreign key (USER_ID) references USER_PROFILE (id)
 );

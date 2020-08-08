@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 
 @Component
 @Profile("init-test-data")
+@Transactional(Transactional.TxType.NOT_SUPPORTED)
 public class InitTestData implements CommandLineRunner {
 
     private final UserProfileRepository userProfileRepository;
