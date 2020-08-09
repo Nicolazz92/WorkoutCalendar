@@ -2,6 +2,7 @@ package com.velikokhatko.study.service.mapper.base;
 
 import com.velikokhatko.study.model.base.BaseEntity;
 import com.velikokhatko.study.model.base.BaseEntityNamed;
+import com.velikokhatko.study.service.mapper.Mapper;
 import com.velikokhatko.study.view.dto.base.BaseEntityDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import org.springframework.transaction.annotation.Transactional;

@@ -5,11 +5,13 @@ import com.velikokhatko.study.service.mapper.base.BaseNamedMappingService;
 import com.velikokhatko.study.view.dto.WorkoutDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class WorkoutDTOMappingService extends BaseNamedMappingService<Workout, WorkoutDTO> {
 
     @Override
