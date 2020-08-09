@@ -1,5 +1,6 @@
 package com.velikokhatko.study.view.dto;
 
+import com.velikokhatko.study.view.dto.base.BaseEntityDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,9 +17,9 @@ public class UserProfileDTO extends BaseEntityNamedDTO {
     private Double lunxVolume;
     //Body Mass Index = weight/height^2
     private Double bmi;
-    private PerformanceDTO performanceDTO;
-    private List<WorkoutDTO> rootWorkouts;
-    private List<ContestDTO> contests;
+    private BaseEntityDTO performanceDTO;
+    private List<BaseEntityNamedDTO> rootWorkouts;
+    private List<BaseEntityNamedDTO> contests;
 
     @Builder
     public UserProfileDTO(Long id,
@@ -28,9 +29,9 @@ public class UserProfileDTO extends BaseEntityNamedDTO {
                           Double height,
                           Double lunxVolume,
                           Double bmi,
-                          PerformanceDTO performanceDTO,
-                          List<WorkoutDTO> rootWorkouts,
-                          List<ContestDTO> contests) {
+                          BaseEntityDTO performanceDTO,
+                          List<BaseEntityNamedDTO> rootWorkouts,
+                          List<BaseEntityNamedDTO> contests) {
         super(id, name);
         this.image = image;
         this.weight = weight;

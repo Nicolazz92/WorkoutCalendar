@@ -17,26 +17,26 @@ import java.util.List;
 @NoArgsConstructor
 public class WorkoutDTO extends BaseEntityNamedDTO {
 
-    private UserProfileDTO userProfile;
+    private BaseEntityNamedDTO userProfile;
     private boolean isRoot;
     private LocalTime duration;
     private LocalDateTime date;
     private Intensive intensive;
     private WorkoutType type;
-    private TrackDTO track;
-    private List<WorkoutDTO> workouts;
+    private BaseEntityNamedDTO track;
+    private List<BaseEntityNamedDTO> workouts;
 
     @Builder
     public WorkoutDTO(Long id,
                       String name,
-                      UserProfileDTO userProfile,
+                      BaseEntityNamedDTO userProfile,
                       boolean isRoot,
                       LocalTime duration,
                       LocalDateTime date,
                       Intensive intensive,
                       WorkoutType type,
-                      TrackDTO track,
-                      List<WorkoutDTO> workouts) {
+                      BaseEntityNamedDTO track,
+                      List<BaseEntityNamedDTO> workouts) {
         super(id, name);
         this.userProfile = userProfile;
         this.isRoot = isRoot;

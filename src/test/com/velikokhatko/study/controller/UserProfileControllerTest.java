@@ -20,7 +20,7 @@ class UserProfileControllerTest {
     @Mock
     private UserProfileService userProfileService;
     private MockMvc mockMvc;
-    List<UserProfileDTO> userReducedDTOS = Arrays.asList(
+    List<UserProfileDTO> userProfileDTOs = Arrays.asList(
             UserProfileDTO.builder().id(1000L).name("testName1").build(),
             UserProfileDTO.builder().id(1001L).name("testName2").build()
     );
@@ -28,7 +28,7 @@ class UserProfileControllerTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        Mockito.when(userProfileService.getReducedUsers()).thenReturn(userReducedDTOS);
+        Mockito.when(userProfileService.getUserProfileDTOs()).thenReturn(userProfileDTOs);
 
         UserProfileController userProfileController = new UserProfileController(userProfileService);
         mockMvc = MockMvcBuilders.standaloneSetup(userProfileController)
@@ -40,9 +40,9 @@ class UserProfileControllerTest {
     public void getReducedUsersTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.model().attributeExists("reducedUsers"))
-                .andExpect(MockMvcResultMatchers.model().attribute("reducedUsers", userReducedDTOS));
+                .andExpect(MockMvcResultMatchers.model().attributeExists("users"))
+                .andExpect(MockMvcResultMatchers.model().attribute("users", userProfileDTOs));
 
-        Mockito.verify(userProfileService, Mockito.times(1)).getReducedUsers();
+        Mockito.verify(userProfileService, Mockito.times(1)).getUserProfileDTOs();
     }
 }

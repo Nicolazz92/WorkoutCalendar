@@ -1,37 +1,34 @@
 package com.velikokhatko.study.service;
 
+import com.velikokhatko.study.model.UserProfile;
 import com.velikokhatko.study.repository.UserProfileRepository;
-import com.velikokhatko.study.repository.WorkoutRepository;
-import com.velikokhatko.study.utils.mapper.UserProfileDTOMapper;
+import com.velikokhatko.study.service.mapper.UserProfileDTOMappingService;
 import com.velikokhatko.study.view.dto.UserProfileDTO;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserProfileService {
 
     private final UserProfileRepository userProfileRepository;
-    private final WorkoutRepository workoutRepository;
-    private final UserProfileDTOMapper userProfileDTOMapper;
+    private final UserProfileDTOMappingService userProfileDTOMapper;
 
     public UserProfileService(UserProfileRepository userProfileRepository,
-                              WorkoutRepository workoutRepository,
-                              UserProfileDTOMapper userProfileDTOMapper) {
+                              UserProfileDTOMappingService userProfileDTOMapper) {
         this.userProfileRepository = userProfileRepository;
-        this.workoutRepository = workoutRepository;
         this.userProfileDTOMapper = userProfileDTOMapper;
     }
 
     @Transactional(readOnly = true)
-    public List<UserProfileDTO> getReducedUsers(String... sortByFields) {
-        List<UserProfileDTO> profiles = userProfileRepository
-                .findAll((root, query, criteriaBuilder) -> criteriaBuilder.and(), Sort.by(sortByFields))
-                .stream().map(userProfileDTOMapper::entityToDTO)
-                .collect(Collectors.toList());
-        return profiles;
+    public List<UserProfile> getUserProfiles(String... sortByFields) {
+        return userProfileRepository.findAll((root, query, criteriaBuilder) -> criteriaBuilder.and(), Sort.by(sortByFields));
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserProfileDTO> getUserProfileDTOs(String... sortByFields) {
+        return userProfileDTOMapper.entitiesToDTOs(getUserProfiles(sortByFields));
     }
 }

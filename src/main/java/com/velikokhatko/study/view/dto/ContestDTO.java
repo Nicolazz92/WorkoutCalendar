@@ -11,18 +11,18 @@ import java.util.List;
 @Getter
 @Setter
 public class ContestDTO extends BaseEntityNamedDTO {
-    private TrackDTO track;
+    private BaseEntityNamedDTO track;
     private LocalDate date;
-    private List<UserProfileDTO> members;
-    private UserProfileDTO winner;
+    private List<BaseEntityNamedDTO> members;
+    private BaseEntityNamedDTO winner;
 
     @Builder
     public ContestDTO(Long id,
                       String name,
-                      TrackDTO track,
+                      BaseEntityNamedDTO track,
                       LocalDate date,
-                      List<UserProfileDTO> members,
-                      UserProfileDTO winner) {
+                      List<BaseEntityNamedDTO> members,
+                      BaseEntityNamedDTO winner) {
         super(id, name);
         this.track = track;
         this.date = date;

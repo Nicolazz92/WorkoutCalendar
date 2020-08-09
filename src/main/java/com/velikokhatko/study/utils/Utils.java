@@ -1,4 +1,4 @@
-package com.velikokhatko.study.util;
+package com.velikokhatko.study.utils;
 
 public final class Utils {
 
