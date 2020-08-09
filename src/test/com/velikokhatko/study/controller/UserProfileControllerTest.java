@@ -2,6 +2,7 @@ package com.velikokhatko.study.controller;
 
 import com.velikokhatko.study.service.UserProfileService;
 import com.velikokhatko.study.view.dto.UserProfileDTO;
+import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -20,7 +21,7 @@ class UserProfileControllerTest {
     @Mock
     private UserProfileService userProfileService;
     private MockMvc mockMvc;
-    List<UserProfileDTO> userProfileDTOs = Arrays.asList(
+    List<BaseEntityNamedDTO> userProfileDTOs = Arrays.asList(
             UserProfileDTO.builder().id(1000L).name("testName1").build(),
             UserProfileDTO.builder().id(1001L).name("testName2").build()
     );
@@ -30,7 +31,7 @@ class UserProfileControllerTest {
         MockitoAnnotations.initMocks(this);
         Mockito.when(userProfileService.getUserProfileDTOs()).thenReturn(userProfileDTOs);
 
-        UserProfileController userProfileController = new UserProfileController(userProfileService);
+        IndexController userProfileController = new IndexController(userProfileService);
         mockMvc = MockMvcBuilders.standaloneSetup(userProfileController)
                 .setControllerAdvice()
                 .build();

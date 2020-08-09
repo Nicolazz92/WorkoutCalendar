@@ -21,7 +21,7 @@ public class WorkoutService {
         return workoutRepository.findAll((root, query, criteriaBuilder) ->
                 criteriaBuilder.and(
                         criteriaBuilder.equal(root.get("userProfile"), userProfileId),
-                        criteriaBuilder.equal(root.get("isRoot"), true)
+                        criteriaBuilder.isTrue(root.get("isRoot"))
                 ));
     }
 }
