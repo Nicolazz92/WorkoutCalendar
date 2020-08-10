@@ -1,12 +1,12 @@
 package com.velikokhatko.study.view.dto;
 
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class TrackDTO extends BaseEntityNamedDTO {
     private Byte[] image;
 
