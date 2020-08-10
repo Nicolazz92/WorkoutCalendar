@@ -1,4 +1,4 @@
-package com.velikokhatko.study.service.mapper;
+package com.velikokhatko.study.service.mapper.bicycle;
 
 import com.velikokhatko.study.model.base.BaseEntity;
 import com.velikokhatko.study.model.base.BaseEntityNamed;

@@ -1,7 +1,7 @@
-package com.velikokhatko.study.service.mapper;
+package com.velikokhatko.study.service.mapper.bicycle;
 
 import com.velikokhatko.study.model.Performance;
-import com.velikokhatko.study.service.mapper.base.BaseMappingService;
+import com.velikokhatko.study.service.mapper.bicycle.base.BaseMappingService;
 import com.velikokhatko.study.view.dto.PerformanceDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

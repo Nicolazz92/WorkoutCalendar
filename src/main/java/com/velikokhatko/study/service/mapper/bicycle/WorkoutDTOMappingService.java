@@ -1,7 +1,7 @@
-package com.velikokhatko.study.service.mapper;
+package com.velikokhatko.study.service.mapper.bicycle;
 
 import com.velikokhatko.study.model.Workout;
-import com.velikokhatko.study.service.mapper.base.BaseNamedMappingService;
+import com.velikokhatko.study.service.mapper.bicycle.base.BaseNamedMappingService;
 import com.velikokhatko.study.view.dto.WorkoutDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import org.springframework.stereotype.Service;

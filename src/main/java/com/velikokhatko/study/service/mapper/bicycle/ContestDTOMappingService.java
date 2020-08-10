@@ -1,8 +1,8 @@
-package com.velikokhatko.study.service.mapper;
+package com.velikokhatko.study.service.mapper.bicycle;
 
 import com.velikokhatko.study.model.Contest;
 import com.velikokhatko.study.model.base.BaseEntityNamed;
-import com.velikokhatko.study.service.mapper.base.BaseNamedMappingService;
+import com.velikokhatko.study.service.mapper.bicycle.base.BaseNamedMappingService;
 import com.velikokhatko.study.view.dto.ContestDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import org.springframework.stereotype.Service;

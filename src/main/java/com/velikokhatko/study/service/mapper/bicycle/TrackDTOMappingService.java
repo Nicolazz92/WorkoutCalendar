@@ -1,7 +1,7 @@
-package com.velikokhatko.study.service.mapper;
+package com.velikokhatko.study.service.mapper.bicycle;
 
 import com.velikokhatko.study.model.Track;
-import com.velikokhatko.study.service.mapper.base.BaseNamedMappingService;
+import com.velikokhatko.study.service.mapper.bicycle.base.BaseNamedMappingService;
 import com.velikokhatko.study.view.dto.TrackDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
