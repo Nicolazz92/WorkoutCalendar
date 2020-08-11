@@ -1,4 +1,4 @@
-package com.velikokhatko.study.service.mapper.bicycle.base;
+package com.velikokhatko.study.service.mapper.base;
 
 import com.velikokhatko.study.model.base.BaseEntityNamed;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
@@ -16,7 +16,6 @@ public abstract class BaseNamedMappingService<E extends BaseEntityNamed, DTO ext
                 .collect(Collectors.toList());
     }
 
-    @Transactional(readOnly = true)
     public List<BaseEntityNamedDTO> entitiesToBaseEntityNamedDTOs(List<BaseEntityNamed> entities) {
         return entities.stream()
                 .map(this::entityToBaseEntityNamedDTO)
@@ -24,7 +23,6 @@ public abstract class BaseNamedMappingService<E extends BaseEntityNamed, DTO ext
     }
 
     @Override
-    @Transactional(readOnly = true)
     public BaseEntityNamedDTO entityToBaseEntityNamedDTO(BaseEntityNamed entity) {
         return new BaseEntityNamedDTO(entity.getId(), entity.getName());
     }

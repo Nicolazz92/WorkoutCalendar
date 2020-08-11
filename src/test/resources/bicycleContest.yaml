@@ -1,0 +1,9 @@
+!!com.velikokhatko.study.view.dto.ContestDTO
+date: {2020-07-13}
+id: 9
+members:
+  - {id: 1, name: George}
+  - &id001 {id: 3, name: Michael}
+name: Super Bicycling!
+track: {id: 6, name: Bicycle Track}
+winner: *id001

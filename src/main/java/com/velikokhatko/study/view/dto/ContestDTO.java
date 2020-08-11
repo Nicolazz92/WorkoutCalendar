@@ -3,6 +3,7 @@ package com.velikokhatko.study.view.dto;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ContestDTO extends BaseEntityNamedDTO {
     private BaseEntityNamedDTO track;
     private LocalDate date;

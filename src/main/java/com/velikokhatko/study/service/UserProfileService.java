@@ -3,7 +3,7 @@ package com.velikokhatko.study.service;
 import com.velikokhatko.study.model.UserProfile;
 import com.velikokhatko.study.model.base.BaseEntityNamed;
 import com.velikokhatko.study.repository.UserProfileRepository;
-import com.velikokhatko.study.service.mapper.bicycle.UserProfileDTOMappingService;
+import com.velikokhatko.study.service.mapper.UserProfileDTOMappingService;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

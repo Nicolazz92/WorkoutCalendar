@@ -1,10 +1,10 @@
-package com.velikokhatko.study.service.mapper.bicycle;
+package com.velikokhatko.study.service.mapper;
 
 import com.velikokhatko.study.model.UserProfile;
 import com.velikokhatko.study.model.Workout;
 import com.velikokhatko.study.model.base.BaseEntityNamed;
 import com.velikokhatko.study.service.WorkoutService;
-import com.velikokhatko.study.service.mapper.bicycle.base.BaseNamedMappingService;
+import com.velikokhatko.study.service.mapper.base.BaseNamedMappingService;
 import com.velikokhatko.study.utils.Utils;
 import com.velikokhatko.study.view.dto.UserProfileDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityDTO;

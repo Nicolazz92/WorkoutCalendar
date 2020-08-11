@@ -2,28 +2,31 @@ package com.velikokhatko.study.service.mapper;
 
 import com.velikokhatko.study.model.Track;
 import com.velikokhatko.study.view.dto.TrackDTO;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TrackMapperTest {
+class TrackDTOMappingServiceTest {
 
-    private static TrackMapper trackMapper;
-    private static Track origTrack;
-    private static TrackDTO origTrackDTO;
+    private TrackDTOMappingService trackMapper;
+    private Track origTrack;
+    private TrackDTO origTrackDTO;
 
-    static {
-        trackMapper = new TrackMapper();
+    @BeforeEach
+    public void setUp() {
+        trackMapper = new TrackDTOMappingService();
 
         origTrack = new Track();
         origTrack.setId(100L);
         origTrack.setName("testName");
         origTrack.setImage(new Byte[]{0b11, 0b01});
 
-        origTrackDTO = new TrackDTO();
-        origTrackDTO.setId(origTrack.getId());
-        origTrackDTO.setName(origTrack.getName());
-        origTrackDTO.setImage(origTrack.getImage());
+        origTrackDTO = TrackDTO.builder()
+                .id(origTrack.getId())
+                .name(origTrack.getName())
+                .image(origTrack.getImage())
+                .build();
     }
 
     @Test
