@@ -1,0 +1,24 @@
+---
+id: 10
+name: "Low George Bicycle Workout"
+userProfile:
+  id: 1
+  name: "George"
+duration:
+  - 1
+  - 32
+date:
+  - 2020
+  - 6
+  - 10
+  - 15
+  - 0
+intensive: "LOW"
+type: "BICYCLE"
+track:
+  id: 6
+  name: "Bicycle Track"
+workouts:
+  - id: 11
+    name: "Normal George Running Workout"
+root: false

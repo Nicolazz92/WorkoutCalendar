@@ -1,17 +1,20 @@
 package com.velikokhatko.study.view.dto;
 
 import com.velikokhatko.study.view.dto.base.BaseEntityDTO;
+import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalTime;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class PerformanceDTO extends BaseEntityDTO {
 
-    private UserProfileDTO userProfile;
+    private BaseEntityNamedDTO userProfile;
     private LocalTime run100m;
     private LocalTime run500m;
     private LocalTime run1000m;
@@ -23,7 +26,7 @@ public class PerformanceDTO extends BaseEntityDTO {
 
     @Builder
     public PerformanceDTO(Long id,
-                          UserProfileDTO userProfile,
+                          BaseEntityNamedDTO userProfile,
                           LocalTime run100m,
                           LocalTime run500m,
                           LocalTime run1000m,

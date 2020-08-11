@@ -1,4 +1,4 @@
-package com.velikokhatko.study.service.mapper;
+package com.velikokhatko.study;
 
 import com.velikokhatko.study.model.*;
 import com.velikokhatko.study.model.enums.Intensive;
@@ -8,22 +8,22 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class AbstractMapperTest {
+public class TestData {
 
-    static protected UserProfile george = getGeorge();
-    static protected Performance georgePerformance = getGeorgePerformance();
-    static protected UserProfile michael = getMichael();
-    static protected Performance michaelPerformance = getMichaelPerformance();
-    static protected Track runningTrack = getRunningTrack();
-    static protected Track bicycleTrack = getBicycleTrack();
-    static protected Track swimmingTrack = getSwimmingTrack();
-    static protected Contest runningContest = getRunningContest();
-    static protected Contest bicycleContest = getBicycleContest();
-    static protected Workout georgeRootBicycleWorkout = getGeorgeRootBicycleWorkout();
-    static protected Workout georgeRunningWorkout = getGeorgeRunningWorkout();
-    static protected Workout georgeLeafSwimmingWorkout = getGeorgeLeafSwimmingWorkout();
-    static protected Workout michaelRootBicycleWorkout = getMichaelRootBicycleWorkout();
-    static protected Workout michaelLeafRunningWorkout = getMichaelLeafRunningWorkout();
+    static public UserProfile george = getGeorge();
+    static public Performance georgePerformance = getGeorgePerformance();
+    static public UserProfile michael = getMichael();
+    static public Performance michaelPerformance = getMichaelPerformance();
+    static public Track runningTrack = getRunningTrack();
+    static public Track bicycleTrack = getBicycleTrack();
+    static public Track swimmingTrack = getSwimmingTrack();
+    static public Contest runningContest = getRunningContest();
+    static public Contest bicycleContest = getBicycleContest();
+    static public Workout georgeRootBicycleWorkout = getGeorgeRootBicycleWorkout();
+    static public Workout georgeRunningWorkout = getGeorgeRunningWorkout();
+    static public Workout georgeLeafSwimmingWorkout = getGeorgeLeafSwimmingWorkout();
+    static public Workout michaelRootBicycleWorkout = getMichaelRootBicycleWorkout();
+    static public Workout michaelLeafRunningWorkout = getMichaelLeafRunningWorkout();
 
     private static long counter = 0;
 

@@ -1,25 +1,38 @@
 package com.velikokhatko.study.service.mapper;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.velikokhatko.study.view.dto.ContestDTO;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.nodes.Node;
+import org.springframework.core.io.ClassPathResource;
 
-class ContestDTOMappingServiceTest extends AbstractMapperTest {
+import java.io.IOException;
 
-    ContestDTOMappingService mappingService = new ContestDTOMappingService();
+import static com.velikokhatko.study.TestData.bicycleContest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    @Test
-    void entityToDTO() {
-        ContestDTO contestDTO = mappingService.entityToDTO(bicycleContest);
+class ContestDTOMappingServiceTest {
 
-        Yaml yaml = new Yaml();
-        Node represent = yaml.represent(contestDTO);
+    private ContestDTOMappingService mappingService;
+    private ObjectMapper mapper;
 
-        System.out.println();
+    public ContestDTOMappingServiceTest() {
+        mappingService = new ContestDTOMappingService();
+        mapper = new ObjectMapper(new YAMLFactory());
+        mapper.findAndRegisterModules();
     }
 
     @Test
-    void dtoToEntity() {
+    void entityToDTO() throws IOException {
+        ContestDTO contestDTO = mappingService.entityToDTO(bicycleContest);
+        ContestDTO contestDTOFromYaml = mapper.readValue(
+                new ClassPathResource("yaml/testBicycleContest.yaml").getFile(), ContestDTO.class);
+        assertEquals(contestDTOFromYaml, contestDTO);
+    }
+
+    @Test
+    @Disabled
+    void dtoToEntity() throws IOException {
     }
 }

@@ -1,0 +1,20 @@
+---
+id: 1
+name: "George"
+image:
+  - 1
+  - 3
+weight: 82.1
+height: 173.2
+lunxVolume: 3.7
+bmi: 27.36827227197329
+performanceDTO:
+  id: 2
+rootWorkouts:
+  - id: 10
+    name: "Low George Bicycle Workout"
+contests:
+  - id: 8
+    name: "Super Running!"
+  - id: 9
+    name: "Super Bicycling!"

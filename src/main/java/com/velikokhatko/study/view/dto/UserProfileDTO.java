@@ -4,12 +4,14 @@ import com.velikokhatko.study.view.dto.base.BaseEntityDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class UserProfileDTO extends BaseEntityNamedDTO {
     private Byte[] image;
     private Double weight;

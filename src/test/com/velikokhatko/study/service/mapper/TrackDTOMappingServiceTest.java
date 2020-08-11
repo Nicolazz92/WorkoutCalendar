@@ -1,43 +1,38 @@
 package com.velikokhatko.study.service.mapper;
 
-import com.velikokhatko.study.model.Track;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.velikokhatko.study.view.dto.TrackDTO;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.springframework.core.io.ClassPathResource;
 
+import java.io.IOException;
+
+import static com.velikokhatko.study.TestData.bicycleTrack;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TrackDTOMappingServiceTest {
 
-    private TrackDTOMappingService trackMapper;
-    private Track origTrack;
-    private TrackDTO origTrackDTO;
+    private TrackDTOMappingService mappingService;
+    private ObjectMapper mapper;
 
-    @BeforeEach
-    public void setUp() {
-        trackMapper = new TrackDTOMappingService();
-
-        origTrack = new Track();
-        origTrack.setId(100L);
-        origTrack.setName("testName");
-        origTrack.setImage(new Byte[]{0b11, 0b01});
-
-        origTrackDTO = TrackDTO.builder()
-                .id(origTrack.getId())
-                .name(origTrack.getName())
-                .image(origTrack.getImage())
-                .build();
+    public TrackDTOMappingServiceTest() {
+        mappingService = new TrackDTOMappingService();
+        mapper = new ObjectMapper(new YAMLFactory());
+        mapper.findAndRegisterModules();
     }
 
     @Test
-    public void entityToDTOTest() {
-        TrackDTO trackDTO = trackMapper.entityToDTO(origTrack);
-        assertEquals(origTrackDTO, trackDTO);
+    public void entityToDTO() throws IOException {
+        TrackDTO trackDTOFromYaml = mapper.readValue(
+                new ClassPathResource("yaml/testBicycleTrack.yaml").getFile(), TrackDTO.class);
+        TrackDTO trackDTO = mappingService.entityToDTO(bicycleTrack);
+        assertEquals(trackDTOFromYaml, trackDTO);
     }
 
     @Test
-    public void dtoToEntityTest() {
-        Track track = trackMapper.dtoToEntity(origTrackDTO);
-        assertEquals(origTrack, track);
+    @Disabled
+    public void dtoToEntity() {
     }
 }

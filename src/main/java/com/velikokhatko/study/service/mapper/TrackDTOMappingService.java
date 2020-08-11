@@ -19,7 +19,6 @@ public class TrackDTOMappingService extends BaseNamedMappingService<Track, Track
 
     @Override
     public Track dtoToEntity(TrackDTO dto) {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(dto, Track.class);
+        throw new UnsupportedOperationException("Not Implemented Yet");
     }
 }

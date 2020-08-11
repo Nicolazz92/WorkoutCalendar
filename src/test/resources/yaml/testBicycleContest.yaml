@@ -1,0 +1,18 @@
+---
+id: 9
+name: "Super Bicycling!"
+track:
+  id: 6
+  name: "Bicycle Track"
+date:
+  - 2020
+  - 7
+  - 13
+members:
+  - id: 1
+    name: "George"
+  - id: 3
+    name: "Michael"
+winner:
+  id: 3
+  name: "Michael"
