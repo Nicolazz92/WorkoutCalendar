@@ -1,9 +1,8 @@
-package com.velikokhatko.study.service.mapper;
+package com.velikokhatko.study.service.converters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.velikokhatko.study.view.dto.TrackDTO;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
@@ -12,13 +11,13 @@ import java.io.IOException;
 import static com.velikokhatko.study.TestData.bicycleTrack;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TrackDTOMappingServiceTest {
+class TrackToDTOConverterTest {
 
-    private TrackDTOMappingService mappingService;
+    private TrackToDTOConverter mappingService;
     private ObjectMapper mapper;
 
-    public TrackDTOMappingServiceTest() {
-        mappingService = new TrackDTOMappingService();
+    public TrackToDTOConverterTest() {
+        mappingService = new TrackToDTOConverter();
         mapper = new ObjectMapper(new YAMLFactory());
         mapper.findAndRegisterModules();
     }
@@ -27,12 +26,7 @@ class TrackDTOMappingServiceTest {
     public void entityToDTO() throws IOException {
         TrackDTO trackDTOFromYaml = mapper.readValue(
                 new ClassPathResource("yaml/testBicycleTrack.yaml").getFile(), TrackDTO.class);
-        TrackDTO trackDTO = mappingService.entityToDTO(bicycleTrack);
+        TrackDTO trackDTO = mappingService.convert(bicycleTrack);
         assertEquals(trackDTOFromYaml, trackDTO);
-    }
-
-    @Test
-    @Disabled
-    public void dtoToEntity() {
     }
 }

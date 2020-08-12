@@ -1,13 +1,13 @@
 package com.velikokhatko.study.controller;
 
 import com.velikokhatko.study.service.UserProfileService;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/users")
 public class UserProfileController {
 
@@ -17,7 +17,7 @@ public class UserProfileController {
         this.userProfileService = userProfileService;
     }
 
-    @GetMapping("{userId}")
+    @GetMapping("/{userId}")
     public String getUserByUserId(Model model, @PathVariable String userId) {
         model.addAttribute("user", userProfileService.getUserProfileDTOById(Long.valueOf(userId)));
         return "index";

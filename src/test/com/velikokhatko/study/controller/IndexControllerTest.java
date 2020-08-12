@@ -16,12 +16,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 import java.util.List;
 
-class UserProfileControllerTest {
+class IndexControllerTest {
 
     @Mock
     private UserProfileService userProfileService;
     private MockMvc mockMvc;
-    List<BaseEntityNamedDTO> userProfileDTOs = Arrays.asList(
+    private List<BaseEntityNamedDTO> userProfileDTOs = Arrays.asList(
             UserProfileDTO.builder().id(1000L).name("testName1").build(),
             UserProfileDTO.builder().id(1001L).name("testName2").build()
     );
@@ -31,8 +31,9 @@ class UserProfileControllerTest {
         MockitoAnnotations.initMocks(this);
         Mockito.when(userProfileService.getUserProfileDTOs()).thenReturn(userProfileDTOs);
 
-        IndexController userProfileController = new IndexController(userProfileService);
-        mockMvc = MockMvcBuilders.standaloneSetup(userProfileController)
+        IndexController indexController = new IndexController(userProfileService);
+
+        mockMvc = MockMvcBuilders.standaloneSetup(indexController)
                 .setControllerAdvice()
                 .build();
     }
