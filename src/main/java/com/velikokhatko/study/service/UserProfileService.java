@@ -2,10 +2,10 @@ package com.velikokhatko.study.service;
 
 import com.velikokhatko.study.model.UserProfile;
 import com.velikokhatko.study.repository.UserProfileRepository;
-import com.velikokhatko.study.service.converters.UserProfileToDTOConverter;
-import com.velikokhatko.study.service.converters.base.BaseEntityNamedConverter;
 import com.velikokhatko.study.view.dto.UserProfileDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,15 +18,12 @@ import java.util.stream.Collectors;
 public class UserProfileService {
 
     private final UserProfileRepository userProfileRepository;
-    private final UserProfileToDTOConverter userProfileDTOMapper;
-    private final BaseEntityNamedConverter baseEntityNamedConverter;
+    private final ConversionService conversionService;
 
     public UserProfileService(UserProfileRepository userProfileRepository,
-                              UserProfileToDTOConverter userProfileDTOMapper,
-                              BaseEntityNamedConverter baseEntityNamedConverter) {
+                              @Qualifier("dtoConverter") ConversionService conversionService) {
         this.userProfileRepository = userProfileRepository;
-        this.userProfileDTOMapper = userProfileDTOMapper;
-        this.baseEntityNamedConverter = baseEntityNamedConverter;
+        this.conversionService = conversionService;
     }
 
     @Transactional(readOnly = true)
@@ -42,12 +39,12 @@ public class UserProfileService {
     @Transactional(readOnly = true)
     public List<BaseEntityNamedDTO> getUserProfileDTOs(String... sortByFields) {
         return getUserProfiles(sortByFields).stream()
-                .map(baseEntityNamedConverter::convert)
+                .map(user -> conversionService.convert(user, BaseEntityNamedDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
     public UserProfileDTO getUserProfileDTOById(Long userId) {
-        return userProfileDTOMapper.convert(getUserProfileById(userId));
+        return conversionService.convert(getUserProfileById(userId), UserProfileDTO.class);
     }
 }
