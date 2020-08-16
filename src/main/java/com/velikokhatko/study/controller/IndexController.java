@@ -14,7 +14,7 @@ public class IndexController {
         this.userProfileService = userProfileService;
     }
 
-    @GetMapping({"", "/", "index", "index.html"})
+    @GetMapping({"", "/", "/index", "/index.html"})
     public String getUsers(Model model) {
         model.addAttribute("users", userProfileService.getUserProfileDTOs());
         return "index";

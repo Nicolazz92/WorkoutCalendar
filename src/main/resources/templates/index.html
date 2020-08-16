@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+<h1>List Of Sportsman</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th hidden="true">ID</th>
+        <th>NAME</th>
+    </tr>
+    </thead>
+    <tbody th:remove="all-but-first">
+    <tr th:each="user : ${users}">
+        <td hidden="true" th:text="${user.id}">id</td>
+        <td th:text="${user.name}">name</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+
