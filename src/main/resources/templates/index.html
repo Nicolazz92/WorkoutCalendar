@@ -16,17 +16,18 @@
 <table>
     <thead>
     <tr>
-        <th hidden="true">ID</th>
-        <th>NAME</th>
+        <th>Name</th>
+        <th></th>
     </tr>
     </thead>
-    <tbody th:remove="all-but-first">
+    <tbody>
     <tr th:each="user : ${users}">
-        <td hidden="true" th:text="${user.id}">id</td>
         <td th:text="${user.name}">name</td>
+        <td>
+            <a th:href="@{/users/{id}(id=${user.id})}" th:text="more"></a>
+        </td>
     </tr>
     </tbody>
 </table>
 </body>
 </html>
-

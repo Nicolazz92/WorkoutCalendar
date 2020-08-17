@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User Profile</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body th:object="${userProfile}">
+
+<h1 th:text="*{name}">List Of Sportsman</h1>
+
+<div>
+    <p>Weight: <span th:text="*{weight}">weight</span>.</p>
+    <p>Height: <span th:text="*{height}">height</span>.</p>
+    <p>BMI: <span th:text="*{getBmi()}">body mass index</span>.</p>
+    <p>Lunx Volume: <span th:text="*{lunxVolume}">lunx volume</span>.</p>
+</div>
+
+</body>
+</html>
