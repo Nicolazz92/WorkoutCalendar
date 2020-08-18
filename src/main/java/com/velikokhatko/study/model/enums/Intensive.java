@@ -6,7 +6,7 @@ public enum Intensive {
     HIGH(1.5),
     ULTRA(2d);
 
-    private Double multiplex;
+    private final Double multiplex;
 
     public Double getMultiplex() {
         return multiplex;

@@ -1,8 +1,6 @@
 package com.velikokhatko.study.service.converters;
 
 import com.velikokhatko.study.model.UserProfile;
-import com.velikokhatko.study.model.Workout;
-import com.velikokhatko.study.service.WorkoutService;
 import com.velikokhatko.study.service.converters.base.BaseEntityConverter;
 import com.velikokhatko.study.service.converters.base.BaseEntityNamedConverter;
 import com.velikokhatko.study.utils.Utils;
@@ -20,14 +18,11 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class UserProfileToDTOConverter implements Converter<UserProfile, UserProfileDTO> {
 
-    private final WorkoutService workoutService;
     private final BaseEntityConverter baseEntityConverter;
     private final BaseEntityNamedConverter baseEntityNamedConverter;
 
-    public UserProfileToDTOConverter(WorkoutService workoutService,
-                                     BaseEntityConverter baseEntityConverter,
+    public UserProfileToDTOConverter(BaseEntityConverter baseEntityConverter,
                                      BaseEntityNamedConverter baseEntityNamedConverter) {
-        this.workoutService = workoutService;
         this.baseEntityConverter = baseEntityConverter;
         this.baseEntityNamedConverter = baseEntityNamedConverter;
     }
@@ -38,8 +33,7 @@ public class UserProfileToDTOConverter implements Converter<UserProfile, UserPro
         List<BaseEntityNamedDTO> contestDTOs = entity.getContests().stream()
                 .map(baseEntityNamedConverter::convert)
                 .collect(Collectors.toList());
-        List<Workout> rootWorkoutsByUserId = workoutService.getRootWorkoutsByUserId(entity.getId());
-        List<BaseEntityNamedDTO> rootWorkoutDTOs = rootWorkoutsByUserId.stream()
+        List<BaseEntityNamedDTO> workoutDTOs = entity.getWorkouts().stream()
                 .map(baseEntityNamedConverter::convert)
                 .collect(Collectors.toList());
 
@@ -52,7 +46,7 @@ public class UserProfileToDTOConverter implements Converter<UserProfile, UserPro
                 .lunxVolume(entity.getLunxVolume())
                 .bmi(Utils.findBMI(entity.getWeight(), entity.getHeight()))
                 .performanceDTO(performanceDTO)
-                .rootWorkouts(rootWorkoutDTOs)
+                .rootWorkouts(workoutDTOs)
                 .contests(contestDTOs)
                 .build();
     }

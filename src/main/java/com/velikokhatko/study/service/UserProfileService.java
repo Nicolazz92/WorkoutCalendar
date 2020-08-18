@@ -12,17 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 public class UserProfileService {
 
     private final UserProfileRepository userProfileRepository;
+    private final WorkoutService workoutService;
     private final ConversionService conversionService;
 
     public UserProfileService(UserProfileRepository userProfileRepository,
+                              WorkoutService workoutService,
                               @Qualifier("dtoConverter") ConversionService conversionService) {
         this.userProfileRepository = userProfileRepository;
+        this.workoutService = workoutService;
         this.conversionService = conversionService;
     }
 
@@ -45,6 +49,11 @@ public class UserProfileService {
 
     @Transactional(readOnly = true)
     public UserProfileDTO getUserProfileDTOById(Long userId) {
-        return conversionService.convert(getUserProfileById(userId), UserProfileDTO.class);
+        UserProfileDTO convert = conversionService.convert(getUserProfileById(userId), UserProfileDTO.class);
+        List<BaseEntityNamedDTO> rootWorkouts = workoutService.getRootWorkoutsByUserId(userId).stream()
+                .map(rootWorkout -> conversionService.convert(rootWorkout, BaseEntityNamedDTO.class))
+                .collect(Collectors.toList());
+        Objects.requireNonNull(convert).setRootWorkouts(rootWorkouts);
+        return convert;
     }
 }

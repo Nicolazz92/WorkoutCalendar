@@ -14,10 +14,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.Arrays;
 
-import static com.velikokhatko.study.TestData.george;
-import static com.velikokhatko.study.TestData.georgeRootBicycleWorkout;
+import static com.velikokhatko.study.TestData.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserProfileToDTOConverterTest {
@@ -31,10 +30,13 @@ class UserProfileToDTOConverterTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         Mockito.when(workoutService.getRootWorkoutsByUserId(george.getId()))
-                .thenReturn(Collections.singletonList(georgeRootBicycleWorkout));
+                .thenReturn(Arrays.asList(
+                        georgeRootBicycleWorkout,
+                        georgeRunningWorkout,
+                        georgeLeafSwimmingWorkout
+                ));
 
         mappingService = new UserProfileToDTOConverter(
-                workoutService,
                 new BaseEntityConverter(),
                 new BaseEntityNamedConverter()
         );

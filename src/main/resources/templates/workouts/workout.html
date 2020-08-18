@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Workout</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body th:object="${workout}">
+
+<h1><span th:text="*{name}">Workout name</span></h1>
+<h3><a th:href="@{/users/{id}(id=*{userProfile.id})}" th:text="User"></a></h3>
+
+<div>
+    <p>Duration: <span th:text="*{duration}">duration</span></p>
+    <p>Date: <span th:text="${#temporals.format(workout.date,'dd/MM/yyyy')}">date</span></p>
+    <p>Intensive: <span th:text="*{intensive}">intensive</span></p>
+    <p>Type: <span th:text="*{type.name()}">type</span></p>
+    <p>Track:
+        <tr>
+            <td><a th:text="*{track.name}" th:href="@{/tracks/{id}(id=${workout.track.id})}">track</a></td>
+        </tr>
+    </p>
+    </br>
+
+    <h3 th:unless="*{workouts.isEmpty()}">CHILD WORKOUTS</h3>
+    <table th:unless="*{workouts.isEmpty()}">
+        <tr th:each="child : *{workouts}">
+            <td><span th:text="${child.name}"></span></td>
+            <td>
+                <a th:href="@{/workours/{id}(id=${child.id})}" th:text="more"></a>
+            </td>
+        </tr>
+    </table>
+    </br>
+</div>
+
+</body>
+</html>

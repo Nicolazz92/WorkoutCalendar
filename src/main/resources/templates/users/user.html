@@ -2,25 +2,25 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
+<body th:object="${userProfile}">
+
 <head>
-    <title>User Profile</title>
+    <title th:text="|*{name} profile|">User Profile</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
-
-<body th:object="${userProfile}">
 
 <h1><span th:text="*{name}">username</span></h1>
 <h3><a th:href="@{/performance/{id}(id=*{performanceDTO.id})}" th:text="Performance"></a></h3>
 
 <div>
-    <p>Weight: <span th:text="*{weight}">weight</span>.</p>
-    <p>Height: <span th:text="*{height}">height</span>.</p>
-    <p>BMI: <span th:text="*{getBmi()}">body mass index</span>.</p>
-    <p>Lunx Volume: <span th:text="*{lunxVolume}">lunx volume</span>.</p>
+    <p>Weight: <span th:text="*{weight}">weight</span></p>
+    <p>Height: <span th:text="*{height}">height</span></p>
+    <p>BMI: <span th:text="*{bmi}">body mass index</span></p>
+    <p>Lunx Volume: <span th:text="*{lunxVolume}">lunx volume</span></p>
     </br>
 
-    <h3>WORKOUTS</h3>
-    <table>
+    <h3 th:unless="*{rootWorkouts.isEmpty()}">WORKOUTS</h3>
+    <table th:unless="*{rootWorkouts.isEmpty()}">
         <tr th:each="workout : *{rootWorkouts}">
             <td><span th:text="${workout.name}"></span></td>
             <td>
@@ -30,8 +30,8 @@
     </table>
     </br>
 
-    <h3>CONTESTS</h3>
-    <table>
+    <h3 th:unless="*{contests.isEmpty()}">CONTESTS</h3>
+    <table th:unless="*{contests.isEmpty()}">
         <tr th:each="contest : *{contests}">
             <td><span th:text="${contest.name}"></span></td>
             <td>
