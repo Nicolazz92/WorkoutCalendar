@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Performance</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body th:object="${performance}">
+
+<h3>
+    <tr>
+        <td><a th:text="*{userProfile.name}" th:href="@{/users/{id}(id=${performance.userProfile.id})}">User</a></td>
+    </tr>
+</h3>
+
+<div>
+    <p th:unless="${performance.run100m == null}">Бег 100 м: <span
+            th:text="|${#temporals.format(performance.run100m, 'ss')} sec|">не определено</span></p>
+    <p th:unless="${performance.run500m == null}">Бег 500 м: <span
+            th:text="|${#temporals.format(performance.run500m, 'mm:ss')} min|">не определено</span></p>
+    <p th:unless="${performance.run1000m == null}">Бег 1000 м: <span
+            th:text="|${#temporals.format(performance.run1000m, 'mm:ss')} min|">не определено</span></p>
+    <p th:unless="${performance.swim100m == null}">Плавание 100 м: <span
+            th:text="|${#temporals.format(performance.swim100m, 'mm:ss')} min|">не определено</span></p>
+    <p th:unless="${performance.swim500m == null}">Плавание 500 м: <span
+            th:text="|${#temporals.format(performance.swim500m, 'mm:ss')} min|">не определено</span></p>
+    <p th:unless="${performance.swim1000m == null}">Плавание 1000 м: <span
+            th:text="|${#temporals.format(performance.swim1000m, 'mm:ss')} min|">не определено</span></p>
+    <p th:unless="${performance.bike10km == null}">Велосипед 10 км: <span
+            th:text="|${#temporals.format(performance.bike10km, 'mm:ss')} min|">не определено</span></p>
+    <p th:unless="${performance.bike25km == null}">Велосипед 25 км: <span
+            th:text="${#temporals.format(performance.bike25km, 'H:mm:ss')}">не определено</span></p>
+</div>
+
+</body>
+</html>
