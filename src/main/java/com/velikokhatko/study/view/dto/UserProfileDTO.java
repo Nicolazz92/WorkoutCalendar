@@ -18,7 +18,7 @@ public class UserProfileDTO extends BaseEntityNamedDTO {
     private Double height;
     private Double lunxVolume;
     //Body Mass Index = weight/height^2
-    private Double bmi;
+    private String bmi;
     private BaseEntityDTO performanceDTO;
     private List<BaseEntityNamedDTO> rootWorkouts;
     private List<BaseEntityNamedDTO> contests;
@@ -30,7 +30,7 @@ public class UserProfileDTO extends BaseEntityNamedDTO {
                           Double weight,
                           Double height,
                           Double lunxVolume,
-                          Double bmi,
+                          String bmi,
                           BaseEntityDTO performanceDTO,
                           List<BaseEntityNamedDTO> rootWorkouts,
                           List<BaseEntityNamedDTO> contests) {

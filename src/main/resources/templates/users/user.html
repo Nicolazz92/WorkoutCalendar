@@ -5,19 +5,40 @@
 <head>
     <title>User Profile</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body th:object="${userProfile}">
 
-<h1 th:text="*{name}">List Of Sportsman</h1>
+<h1><span th:text="*{name}">username</span></h1>
+<h3><a th:href="@{/performance/{id}(id=*{performanceDTO.id})}" th:text="Performance"></a></h3>
 
 <div>
     <p>Weight: <span th:text="*{weight}">weight</span>.</p>
     <p>Height: <span th:text="*{height}">height</span>.</p>
     <p>BMI: <span th:text="*{getBmi()}">body mass index</span>.</p>
     <p>Lunx Volume: <span th:text="*{lunxVolume}">lunx volume</span>.</p>
+    </br>
+
+    <h3>WORKOUTS</h3>
+    <table>
+        <tr th:each="workout : *{rootWorkouts}">
+            <td><span th:text="${workout.name}"></span></td>
+            <td>
+                <a th:href="@{/workours/{id}(id=${workout.id})}" th:text="more"></a>
+            </td>
+        </tr>
+    </table>
+    </br>
+
+    <h3>CONTESTS</h3>
+    <table>
+        <tr th:each="contest : *{contests}">
+            <td><span th:text="${contest.name}"></span></td>
+            <td>
+                <a th:href="@{/contests/{id}(id=${contest.id})}" th:text="more"></a>
+            </td>
+        </tr>
+    </table>
 </div>
 
 </body>
