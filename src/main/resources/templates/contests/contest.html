@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body th:object="${contest}">
+
+<head>
+    <title th:text="|*{name}|">Contest</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<h1><span th:text="*{name}">Contest name</span></h1>
+
+<div>
+    <p th:unless="*{track == null}">Track:
+        <tr>
+            <td><a th:text="*{track.name}" th:href="@{/tracks/{id}(id=${contest.track.id})}">track</a></td>
+        </tr>
+    </p>
+    <p th:unless="*{winner == null}">Winner:
+        <tr>
+            <td><a th:text="*{winner.name}" th:href="@{/users/{id}(id=${contest.winner.id})}">winner</a></td>
+        </tr>
+    </p>
+    </br>
+
+    <h3 th:unless="*{members.isEmpty()}">MEMBERS</h3>
+    <table th:unless="*{members.isEmpty()}">
+        <tr th:each="member : *{members}">
+            <td><span th:text="${member.name}"></span></td>
+            <td>
+                <a th:href="@{/users/{id}(id=${member.id})}" th:text="more"></a>
+            </td>
+        </tr>
+    </table>
+    </br>
+</div>
+
+</body>
+</html>
