@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h2>Track</h2>
+<form th:object="${track}" class="form-horizontal" id="add-owner-form" method="post">
+    <div class="form-group has-feedback">
+        <input
+                th:replace="~{fragments/inputField :: input ('name', 'name', 'text')}"/>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button
+                    th:with="text=${track.id == null} ? 'Add Track' : 'Update Track'"
+                    class="btn btn-default" type="submit" th:text="${text}">Add
+                Track
+            </button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
@@ -46,5 +47,15 @@ public class TrackService {
     @Transactional(readOnly = true)
     public TrackDTO getTrackDTOById(Long trackId) {
         return conversionService.convert(getTrackById(trackId), TrackDTO.class);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public Track save(Track track) {
+        return trackRepository.save(track);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void delete(Long trackId) {
+        trackRepository.deleteById(trackId);
     }
 }

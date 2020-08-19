@@ -51,18 +51,27 @@
 </br>
 
 <h3>Tracks</h3>
+<td>
+    <a th:href="@{/tracks/new}" th:text="Add..."></a>
+</td>
 <table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th></th>
-    </tr>
-    </thead>
     <tbody>
     <tr th:each="track : ${tracks}">
         <td th:text="${track.name}">name</td>
         <td>
-            <a th:href="@{/tracks/{id}(id=${track.id})}" th:text="more"></a>
+            <form method="GET" th:action="@{/tracks/{id}(id=${track.id})}">
+                <button type="submit" name="submit" value="value" class="link-button">view</button>
+            </form>
+        </td>
+        <td>
+            <form method="GET" th:action="@{/tracks/{id}/edit(id=${track.id})}">
+                <button type="submit" name="submit" value="value" class="link-button">edit</button>
+            </form>
+        </td>
+        <td>
+            <form method="POST" th:action="@{/tracks/{id}/delete(id=${track.id})}">
+                <button type="submit" name="submit" value="value" class="link-button">delete</button>
+            </form>
         </td>
     </tr>
     </tbody>
