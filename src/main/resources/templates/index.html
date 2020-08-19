@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Users</title>
+    <title>Start page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -23,6 +23,7 @@
     <tr th:each="user : ${users}">
         <td th:text="${user.name}">name</td>
         <td>
+
             <a th:href="@{/users/{id}(id=${user.id})}" th:text="more"></a>
         </td>
     </tr>
@@ -43,6 +44,25 @@
         <td th:text="${contest.name}">name</td>
         <td>
             <a th:href="@{/contests/{id}(id=${contest.id})}" th:text="more"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</br>
+
+<h3>Tracks</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="track : ${tracks}">
+        <td th:text="${track.name}">name</td>
+        <td>
+            <a th:href="@{/tracks/{id}(id=${track.id})}" th:text="more"></a>
         </td>
     </tr>
     </tbody>

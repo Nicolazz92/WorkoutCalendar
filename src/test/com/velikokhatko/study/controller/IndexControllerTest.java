@@ -1,6 +1,7 @@
 package com.velikokhatko.study.controller;
 
 import com.velikokhatko.study.service.ContestService;
+import com.velikokhatko.study.service.TrackService;
 import com.velikokhatko.study.service.UserProfileService;
 import com.velikokhatko.study.view.dto.UserProfileDTO;
 import com.velikokhatko.study.view.dto.base.BaseEntityNamedDTO;
@@ -23,6 +24,8 @@ class IndexControllerTest {
     private UserProfileService userProfileService;
     @Mock
     private ContestService contestService;
+    @Mock
+    private TrackService trackService;
     private MockMvc mockMvc;
     private List<BaseEntityNamedDTO> userProfileDTOs = Arrays.asList(
             UserProfileDTO.builder().id(1000L).name("testName1").build(),
@@ -34,7 +37,7 @@ class IndexControllerTest {
         MockitoAnnotations.initMocks(this);
         Mockito.when(userProfileService.getUserProfileDTOs()).thenReturn(userProfileDTOs);
 
-        IndexController indexController = new IndexController(userProfileService, contestService);
+        IndexController indexController = new IndexController(userProfileService, contestService, trackService);
 
         mockMvc = MockMvcBuilders.standaloneSetup(indexController)
                 .setControllerAdvice()
